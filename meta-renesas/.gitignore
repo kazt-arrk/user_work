@@ -1,0 +1,6 @@
+##.gitgnore
+**.tar.bz2
+bitbake-cookerdaemon.log
+
+!meta-rzg1/recipes-core/libmemcpy/libmemcpy/libmemcpy-1.0.tar.bz2
+

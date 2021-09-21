@@ -1,0 +1,13 @@
+export XDG_RUNTIME_DIR=/run/user/0/
+export PATH=/home/root/RZ_scripts:$PATH
+
+# Set Audio out
+amixer set 'PCM' 70%
+amixer set 'Headphone' 70%
+
+# Set Mic
+amixer set 'Mic' 70%
+    
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -la'

@@ -1,0 +1,1038 @@
+diff --git a/arch/arm/boot/dts/r8a7745-aprzg0a.dts b/arch/arm/boot/dts/r8a7745-aprzg0a.dts
+index be452c7..7222e3a 100644
+--- a/arch/arm/boot/dts/r8a7745-aprzg0a.dts
++++ b/arch/arm/boot/dts/r8a7745-aprzg0a.dts
+@@ -14,6 +14,7 @@
+ 
+ /* LCDKIT */
+ // #define LCD_KIT_B01
++// #define LCD_KIT_B02
+ // #define LCD_KIT_C01
+ // #define LCD_KIT_D01
+ // #define LCD_KIT_D02
+@@ -26,7 +27,7 @@
+ // #define USB0_HOSTMODE
+ 
+ / {
+-	model = "AP-RZG-0A Board (BSP : Ver2.1)";
++	model = "AP-RZG-0A Board (BSP : Ver2.2)";
+ 	compatible = "ap,aprzg0a", "renesas,r8a7745";
+ 
+ 	aliases {
+@@ -81,7 +82,7 @@
+ 	};
+ 
+ 	lcd@0 {
+-#if defined(LCD_KIT_B01) || defined(LCD_KIT_C01)
++#if defined(LCD_KIT_B01) || defined(LCD_KIT_B02) || defined(LCD_KIT_C01)
+ 		compatible = "apj,lcdkit", "simple-panel";
+ #endif
+ #if defined(LCD_KIT_D01) || defined(LCD_KIT_D02)
+@@ -152,6 +153,19 @@
+ 	};
+ #endif
+ 
++#if defined(LCD_KIT_B02)
++	lcdkitb02: lcdkitb02@0x42 {
++		pinctrl-0 = <&lcdkit_pins>;
++		pinctrl-names = "default";
++		compatible = "apj,lcdkitb02";
++		reg = <0x42>;
++		interrupt-parent = <&irqc0>;
++		interrupts = <9 IRQ_TYPE_LEVEL_HIGH>;
++		
++		status = "okay";
++	};
++#endif
++
+ #if defined(LCD_KIT_C01)
+ 	lcdkitc01: lcdkitc01@0x42 {
+ 		pinctrl-0 = <&lcdkit_pins>;
+diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+index ba2917f..2b35f19 100644
+--- a/drivers/input/touchscreen/Kconfig
++++ b/drivers/input/touchscreen/Kconfig
+@@ -29,6 +29,15 @@ config TOUCHSCREEN_LCDKITB01
+ 
+ 	  If unsure, say N.
+ 
++config TOUCHSCREEN_LCDKITB02
++	bool "LCD-KIT-B02"
++	depends on TOUCHSCREEN_LCDKIT
++	depends on I2C
++	help
++	  Say Y here if you have a ALPHAPROJECT LCD-KIT-B02 based touchscreen.
++
++	  If unsure, say N.
++
+ config TOUCHSCREEN_LCDKITC01
+ 	bool "LCD-KIT-C01"
+ 	depends on TOUCHSCREEN_LCDKIT
+diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+index 4bcfc9f..f48f495 100644
+--- a/drivers/input/touchscreen/Makefile
++++ b/drivers/input/touchscreen/Makefile
+@@ -92,6 +92,7 @@ obj-$(CONFIG_TOUCHSCREEN_ZFORCE)	+= zforce_ts.o
+ obj-$(CONFIG_TOUCHSCREEN_COLIBRI_VF50)	+= colibri-vf50-ts.o
+ obj-$(CONFIG_TOUCHSCREEN_ROHM_BU21023)	+= rohm_bu21023.o
+ obj-$(CONFIG_TOUCHSCREEN_LCDKITB01)	+= lcdkitb01.o
++obj-$(CONFIG_TOUCHSCREEN_LCDKITB02)	+= lcdkitb02.o
+ obj-$(CONFIG_TOUCHSCREEN_LCDKITC01)	+= lcdkitc01.o
+ obj-$(CONFIG_TOUCHSCREEN_LCDKITD01)	+= lcdkitd01.o
+ obj-$(CONFIG_TOUCHSCREEN_LCDKITD02)	+= lcdkitd02.o
+diff --git a/drivers/input/touchscreen/lcdkitb02.c b/drivers/input/touchscreen/lcdkitb02.c
+new file mode 100644
+index 0000000..b25750d
+--- /dev/null
++++ b/drivers/input/touchscreen/lcdkitb02.c
+@@ -0,0 +1,950 @@
++/*
++ * LCD-KIT-B02 Touchpanel LCD KIT
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation; either version 3 of the License, or
++ * (at your option) any later version.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <http://www.gnu.org/licenses/>
++ */
++#include <linux/input.h>
++#include <linux/input/mt.h>
++#include <linux/i2c.h>
++#include <linux/module.h>
++#include <linux/slab.h>
++#include <linux/timer.h>
++#include <linux/kthread.h>
++#include <linux/irq.h>
++#include <linux/interrupt.h>
++#include <linux/wait.h>
++#include <linux/leds.h>
++#include <linux/platform_device.h>
++#include <linux/miscdevice.h>
++#include <asm/uaccess.h>
++#include <linux/cdev.h>
++#include <linux/types.h>
++#include <asm/io.h>
++#include <linux/delay.h>
++
++#include <linux/gpio.h>
++#ifdef CONFIG_USE_OF
++#include <linux/of_platform.h>
++#include <linux/of_gpio.h>
++#include <linux/of_irq.h>
++#endif  /* CONFIG_USE_OF */
++
++/* Multi touch enable */
++#undef  MULTI_TOUCH_ENABLE
++#define MULTI_TOUCH_CHANNEL         (2)
++#define FINGER1_CH                  (0)
++#define FINGER2_CH                  (1)
++#define MULTI_TOUCH_MAJOR_DEFAULT   (70)
++
++/* ターゲットデバイス名 */
++#define DEVICE_COMMON_NAME              "LCD-KIT"
++#define DEVICE_COMMON_NAME_SMALL        "lcd-kit"
++#define DEVICE_COMMON_NAME_SHORT        "LCDKIT"
++#define DEVICE_COMMON_NAME_SMALL_SHORT  "lcdkit"
++#define DEVICE_NAME                     DEVICE_COMMON_NAME"-B02"
++#define DEVICE_NAME_SMALL               DEVICE_COMMON_NAME_SMALL"-b02"
++#define DEVICE_NAME_SMALL_SHORT         DEVICE_COMMON_NAME_SMALL_SHORT"b02"
++
++/* ドライバ名 */
++#define DRIVER_NAME             DEVICE_NAME" Driver"
++
++/* Device Tree compatible */
++#define DTB_COMPATIBLE          "apj,"DEVICE_NAME_SMALL_SHORT
++
++/* マウス使用 */
++#undef USE_MOUSE
++
++/* バックライトLED */
++#define BACKLIGHT_LED_BRIGHTNESS_MAX        (255)
++#define BACKLIGHT_LED_BRIGHTNESS_DEFAULT    (BACKLIGHT_LED_BRIGHTNESS_MAX)
++
++/* 制御コマンド */
++#define CMD_GET_FIRMWARE_VERSION    (0x00)
++  #define FIRM_VERSION_LEN            (1)
++#define CMD_GET_INTR_STATUS         (0x01)
++#define CMD_SET_INTR_MASK           (0x02)
++#define CMD_SET_BACKLIGHT_LED       (0x03)
++#define CMD_SET_BUZZER              (0x04)
++#define CMD_RESET_TOUCHPANEL        (0x05)
++#define CMD_GET_TOUCH_INFO          (0x10)
++  #define TOUCH_INFO_SIZE             (9)
++#define CMD_GET_PANEL_INFO          (0x20)
++  #define PANEL_INFO_LEN              (6)
++#define CMD_SET_SLEEP_MODE          (0x30)
++#define CMD_GET_TOUCHPANE_FIRMWARE_VERSION    (0x40)
++#define CMD_SET_CALIBRATION         (0x50)
++
++/* 最大読み込みデータサイズ */
++#define MAX_BLKSIZE     (9)
++
++/* タッチ検出用ビットマスク */
++#define T1_BITMASK      (0x01)
++#define T2_BITMASK      (0x02)
++
++/* 割り込みステータスマスク */
++#define STATUS_SW3      (1 << 4)
++#define STATUS_SW2      (1 << 3)
++#define STATUS_SW1      (1 << 2)
++#define STATUS_TP1      (1 << 1)
++#define STATUS_TP0      (1 << 0)
++
++/* ポーリング周期(mSec) */
++#define POLLING_PERIOD  (100)
++#define READ_MSECS      (5)
++
++/* 汎用返り値 */
++#define LCDKIT_OK       (0)
++#define LCDKIT_NG       (-1)
++
++/* ペンアップ/ダウン検出 */
++#define CHECK_PENUPDOWN (3)
++#define TP_SAMPLING_COUNT   (5)
++#define TP_AVERAGE_COUNT    (TP_SAMPLING_COUNT - 2) /* ５回サンプリングし、Max/Minを除いた３項を平均する */
++
++/* 処理時間計測 */
++#undef MEASURE_TIME
++
++/* デバッグメッセージ */
++#undef UNIT_DEBUG
++#ifdef UNIT_DEBUG
++#define dbg(format, arg...) printk(KERN_INFO __FILE__ ": "  format "\n", ## arg);
++#else
++#define dbg(arg...)
++#endif
++
++#if !defined(TRUE)
++#define TRUE    (1)
++#endif
++#if !defined(FALSE)
++#define FALSE    (0)
++#endif
++
++/* スクリーン情報構造体 */
++struct lcdkit_panel_info {
++    int xmax_low;   /* X下限値 */
++    int xmax_high;  /* X上限値 */
++    int ymax_low;   /* Y下限値 */
++    int ymax_high;  /* Y上限値 */
++    int x_cnum;     /* Xチャンネル数 */
++    int y_cnum;     /* Yチャンネル数 */
++};
++
++struct position_average {
++    int total;
++    int max;
++    int min;
++};
++
++struct position {
++    int    value;
++    struct position_average ave;
++};
++
++struct touch_info {
++    unsigned long status;   /* タッチ情報のステータス */
++#define TOUCH_STATUS_ENABLE (1 << 0)    /* 有効か無効か */
++#define TOUCH_STATUS_TOUCH  (1 << 1)    /* タッチ状態 */
++#define TOUCH_STATUS_DETECT (1 << 2)    /* 検出状態 */
++#define TOUCH_STATUS_UP     (1 << 4)    /*  */
++#define TOUCH_STATUS_DOWN   (1 << 5)    /*  */
++    struct position x;  /* X情報 */
++    struct position y;  /* Y情報 */
++    int count;
++};
++
++/* LCD-KIT情報構造体 */
++struct lcdkit {
++    struct input_dev  *input;            /* インプットデバイス */
++    struct i2c_client *client;          /* I2Cクライアント */
++    struct i2c_client *tp_client;       /* I2Cクライアント */
++    struct delayed_work work;           /* ワークキュー */
++    u8 ver[FIRM_VERSION_LEN];           /* ファームウェアバージョン */
++    struct lcdkit_panel_info p_info;    /* スクリーン情報 */
++    struct touch_info touch[MULTI_TOUCH_CHANNEL];
++    int irq;                            /* IRQ */
++    unsigned long status;               /* LCDKITのステータス */
++#define LCDKIT_STATUS_INITIALIZED       (1 << 0)    /* 初期化が完了した */
++#define LCDKIT_STATUS_HOLDING           (1 << 4)    /* ホールド(タッチ)中 */
++#define LCDKIT_STATUS_HOLD_TRIGGER      (1 << 5)    /* ホールドされたタイミングで１になる */
++    spinlock_t lock;                    /* スピンロック */
++    struct led_classdev led;
++    struct miscdevice buzzer;
++    int hold_count;
++    int release_count;
++
++    struct timer_list timer;
++    int irq_pin_state;
++
++    struct lcdkit_platform_data *pdata;
++
++    enum led_brightness led_value;
++};
++
++#ifdef CONFIG_PM
++/*
++ * サスペンド
++ */
++__attribute__((unused))
++static int lcdkitb_i2c_suspend(struct i2c_client *client,
++                               pm_message_t message)
++{
++    dbg("%s() is called.\n", __func__);
++
++    return 0;
++}
++
++/*
++ * レジューム
++ */
++__attribute__((unused))
++static int lcdkit_i2c_resume(struct i2c_client *client)
++{
++    dbg("%s() is called.\n", __func__);
++
++    return 0;
++}
++#endif  /* CONFIG_PM */
++
++/*
++ * I2C読み込み(1ワード)
++ */
++__attribute__((unused))
++static int lcdkit_i2c_read(struct i2c_client *client, u8 reg)
++{
++    dbg("%s() is called.\n", __func__);
++    return 0;
++}
++
++/*
++ * I2C読み込み(マルチワード)
++ */
++#if defined(MEASURE_TIME)
++static struct timeval tv0 = {}, tv1 = {};
++#endif  /* MEASURE_TIME */
++static int lcdkit_i2c_multi_read(struct i2c_client *client,
++                                 u8 first_reg, u8 count, u8 *buf)
++{
++    u8  rcv[MAX_BLKSIZE];    /* 受信用バッファ */
++    int ret;                 /* 受信バイト数 */
++
++    /* 受信サイズチェック */
++    if (MAX_BLKSIZE < count) {
++        pr_warning("%s overflow size %d\n", __func__, count);
++    }
++
++    /* 受信 */
++#if defined(MEASURE_TIME)
++    do_gettimeofday(&tv1);
++    printk(KERN_DEBUG "MR %8d\n",
++           (tv1.tv_sec - tv0.tv_sec) * 1000000 +
++           (tv1.tv_usec - tv0.tv_usec));
++    tv0 = tv1;
++#endif  /* MEASURE_TIME */
++
++    ret = i2c_smbus_read_i2c_block_data(client, first_reg, count, rcv);
++    if (ret < 0 || count > ret) {
++        pr_warning("%s i2c_smbus_read_i2c_block_data fail %d\n", __func__, ret);
++        return -1;
++    }
++
++    memcpy(buf, rcv, count);
++
++    return ret;
++}
++
++/*
++ * 書き込み
++ */
++__attribute__((unused))
++static int lcdkit_i2c_write(struct i2c_client *client, u8 reg, u8 val)
++{
++    dbg("%s() is called.\n", __func__);
++    return 0;
++}
++
++static void lcdkit_penup(struct lcdkit *ts)
++{
++#if defined(MULTI_TOUCH_ENABLE)
++    int i, max_ch = MULTI_TOUCH_CHANNEL;
++#endif
++
++    dbg("%s() is called.\n", __func__);
++
++    /* ペンアップ通知 */
++
++    /* チャタリング吸収処理 */
++    if (ts->release_count < CHECK_PENUPDOWN) {
++        schedule_delayed_work(&ts->work, msecs_to_jiffies(READ_MSECS));
++        ts->release_count++;
++
++        goto end;
++
++    } else {
++        ts->release_count = 0;
++
++        /* ここで周期処理が止まる */
++
++    }
++
++    ts->status &= ~(LCDKIT_STATUS_HOLDING | LCDKIT_STATUS_HOLD_TRIGGER);
++
++#ifdef MULTI_TOUCH_ENABLE
++    for (i = 0; i < max_ch; i++) {
++        input_mt_slot(ts->input, i);
++        input_mt_report_slot_state(ts->input, MT_TOOL_FINGER, false);
++        input_report_abs(ts->input, ABS_MT_TOUCH_MAJOR, 0);
++    }
++#endif
++    input_report_abs(ts->input, ABS_PRESSURE, 0);
++    input_report_key(ts->input, BTN_TOUCH, 0);
++    input_sync(ts->input);
++end:
++    ;
++}
++
++static int tp_update_touch_status(struct lcdkit *ts, unsigned char reg)
++{
++    /* Finger1 のタッチ状態 */
++    ts->touch[0].status &= ~TOUCH_STATUS_TOUCH;
++    ts->touch[0].status |= (reg & T1_BITMASK) ? TOUCH_STATUS_TOUCH : 0;
++
++#if defined(MULTI_TOUCH_ENABLE)
++    ts->touch[1].status &= ~TOUCH_STATUS_TOUCH;
++    ts->touch[1].status |= (reg & T2_BITMASK) ? TOUCH_STATUS_TOUCH : 0;
++#endif  /* MULTI_TOUCH_ENABLE */
++
++    return LCDKIT_OK;
++}
++
++/**
++ * @brief      { 位置情報を取得する }
++ *
++ * @param      _src  位置情報を抽出するストリーム。
++ * @param[in]  ch    { 対象とするチャンネル }
++ * @param      x     { X情報の格納先 }
++ * @param      y     { Y情報の格納先 }
++ *
++ * @return     { LCDKIT_OK: 正常終了 }
++ */
++static int tp_get_position(void *_src, int ch, int *x, int *y)
++{
++    unsigned char *src = (unsigned char *)_src;
++    switch (ch) {
++        case FINGER1_CH:
++            *x = (int)((int)src[1] | (int)src[2] << 8);
++            *y = (int)((int)src[3] | (int)src[4] << 8);
++            break;
++#if defined(MULTI_TOUCH_ENABLE)
++        case FINGER2_CH:
++            *x = (int)((int)src[5] | (int)src[6] << 8);
++            *y = (int)((int)src[7] | (int)src[8] << 8);
++            break;
++#endif  /* MULTI_TOUCH_ENABLE */
++        default:
++            return LCDKIT_NG;
++            break;
++    }
++
++    return LCDKIT_OK;
++}
++
++/**
++ * @brief      { タッチパネルに触れている指について取得する }
++ *
++ * @param      ts    { LCDKIT情報 }
++ * @param      ch    { 触れている指のチャンネルを格納するポインタ。B0からch0〜でビットマップ }
++ *
++ * @return     { 触れている指の数 }
++ */
++static int tp_get_finger_num(struct lcdkit *ts,  unsigned long *ch)
++{
++    int num = 0;
++    int max_ch = 1;
++    int i;
++#if defined(MULTI_TOUCH_ENABLE)
++    max_ch = MULTI_TOUCH_CHANNEL;
++#endif  /* MULTI_TOUCH_ENABLE*/
++
++    for (i = 0, *ch = 0; i < max_ch; i++) {
++        if ((ts->touch[i].status & TOUCH_STATUS_TOUCH) == TOUCH_STATUS_TOUCH) {
++            num++;
++            *ch |= (1 << i);
++        }
++    }
++
++    return num;
++}
++
++static void tp_process(struct lcdkit *ts)
++{
++    u8 rcv[MAX_BLKSIZE];    /* 受信用バッファ */
++    int tmp_x, tmp_y;       /* ポイントテンポラリ */
++    int max_ch = 1;
++    int i;
++    struct touch_info *touch;
++    int finger_num = 0;
++    unsigned long touched = 0;
++
++#if defined(MULTI_TOUCH_ENABLE)
++    max_ch = MULTI_TOUCH_CHANNEL;
++#endif  /* MULTI_TOUCH_ENABLE */
++
++    /* タッチ情報読み出し */
++    if (0 > lcdkit_i2c_multi_read(ts->tp_client,
++                                  CMD_GET_TOUCH_INFO,
++                                  TOUCH_INFO_SIZE,
++                                  rcv)) {
++        pr_warning("%s l.%d: panel info read fail\n", __func__, __LINE__);
++        goto end;
++    }
++
++    /* タッチ情報の読み込み */
++    tp_update_touch_status(ts, rcv[0]);
++
++    /* タッチの有無を判定 */
++    finger_num = tp_get_finger_num(ts, &touched);
++    if (finger_num == 0) {
++        /* タッチしていない */
++        lcdkit_penup(ts);
++
++        ts->hold_count = 0;
++
++        goto end;
++    } else {
++        /* タッチしている */
++        ts->release_count = 0;
++    }
++
++    if ((ts->status & LCDKIT_STATUS_HOLDING) != LCDKIT_STATUS_HOLDING) {
++        /* チャタリング吸収処理 */
++        if (ts->hold_count < CHECK_PENUPDOWN) {
++            schedule_delayed_work(&ts->work, msecs_to_jiffies(READ_MSECS));
++            ts->hold_count++;
++
++            goto end;
++
++        } else {
++            /* タッチしたと判断する */
++            ts->hold_count  = 0;
++            ts->status     |= LCDKIT_STATUS_HOLDING;
++
++            /* 誤差低減処理用 の 初期化 */
++            for (i = 0; i < max_ch; i++) {
++                touch = &ts->touch[i];
++                touch->status &= ~TOUCH_STATUS_DETECT;
++                touch->count   = 0;
++            }
++        }
++    }
++
++    for (i = 0; i < max_ch; i++) {
++        touch = &ts->touch[i];
++        if (touch->count == 0) {
++            /* 平滑化情報の初期化 */
++            /*   X, Y のave.min/max には初期値として対極値を代入する */
++            memset(&touch->x.ave, 0, sizeof(touch->x.ave));
++            touch->x.ave.min = ts->p_info.xmax_high;
++            touch->x.ave.max = ts->p_info.xmax_low;
++            memset(&touch->y.ave, 0, sizeof(touch->y.ave));
++            touch->y.ave.min = ts->p_info.ymax_high;
++            touch->y.ave.max = ts->p_info.ymax_low;
++        }
++
++        /* X, Y の取得 */
++        tp_get_position(rcv, i, &tmp_x, &tmp_y);
++
++        if (tmp_x < ts->p_info.xmax_low) {
++            tmp_x = ts->p_info.xmax_low;
++        } else if (tmp_x > ts->p_info.xmax_high) {
++            tmp_x = ts->p_info.xmax_high;
++        }
++        if (tmp_y < ts->p_info.ymax_low) {
++            tmp_y = ts->p_info.ymax_low;
++        } else if (tmp_y > ts->p_info.ymax_high) {
++            tmp_y = ts->p_info.ymax_high;
++        }
++
++        /* X, Y を加算 */
++        touch->x.ave.total += tmp_x;
++        if (touch->x.ave.min > tmp_x) {
++            touch->x.ave.min = tmp_x;
++        }
++        if (touch->x.ave.max < tmp_x) {
++            touch->x.ave.max = tmp_x;
++        }
++
++        touch->y.ave.total += tmp_y;
++        if (touch->y.ave.min > tmp_y) {
++            touch->y.ave.min = tmp_y;
++        }
++        if (touch->y.ave.max < tmp_y) {
++            touch->y.ave.max = tmp_y;
++        }
++
++        touch->count++;
++        /* 規定回数サンプリングしていたら平滑化する */
++        if (touch->count >= TP_SAMPLING_COUNT) {
++            tmp_x  = touch->x.ave.total - (touch->x.ave.min + touch->x.ave.max);
++            tmp_x /= TP_AVERAGE_COUNT;
++            tmp_y  = touch->y.ave.total - (touch->y.ave.min + touch->y.ave.max);
++            tmp_y /= TP_AVERAGE_COUNT;
++
++            if ((ts->touch[i].status & TOUCH_STATUS_TOUCH) == TOUCH_STATUS_TOUCH)
++                touch->status  |= TOUCH_STATUS_DETECT;
++            touch->x.value  = tmp_x;
++            touch->y.value  = tmp_y;
++
++            touch->count = 0;
++        }
++    }
++
++    /* 通知処理 */
++    for (i = 0; i < max_ch; i++) {
++        touch = &ts->touch[i];
++        if (touch->status & TOUCH_STATUS_DETECT) {
++            /* タッチイベントの通知 */
++            if ((ts->status & LCDKIT_STATUS_HOLD_TRIGGER) != LCDKIT_STATUS_HOLD_TRIGGER) {
++                /* 今回のタッチで未通知時に一度だけ通知する */
++                dbg("Pen Down\n");
++                input_report_key(ts->input, BTN_TOUCH, 1);
++                ts->status |= LCDKIT_STATUS_HOLD_TRIGGER;
++            }
++
++#if defined(MULTI_TOUCH_ENABLE)
++            /* マルチタッチ通知 */
++            input_mt_slot(ts->input, i);
++            input_mt_report_slot_state(ts->input, MT_TOOL_FINGER, true);
++            input_report_abs(ts->input,
++                             ABS_MT_POSITION_X,
++                             touch->x.value);
++            input_report_abs(ts->input,
++                             ABS_MT_POSITION_Y,
++                             touch->y.value);
++            input_report_abs(ts->input,
++                             ABS_MT_TOUCH_MAJOR,
++                             MULTI_TOUCH_MAJOR_DEFAULT);
++
++            input_mt_sync_frame(ts->input);
++
++#endif  /* MULTI_TOUCH_ENABLE */
++        }
++
++        /* シングルタッチ通知 */
++        if (finger_num == 1) {
++            input_report_abs(ts->input,
++                             ABS_X,
++                             touch->x.value);
++            input_report_abs(ts->input,
++                             ABS_Y,
++                             touch->y.value);
++        }
++    }
++
++    input_sync(ts->input);
++
++end:
++    ;
++}
++
++static void lcdkit_read(struct work_struct *work)
++{
++    struct lcdkit *ts;  /* タッチパネル情報 */
++    u32 ret = 0;
++    static u32 old_ret = 0;
++
++    ts = container_of(to_delayed_work(work), struct lcdkit, work);
++
++    ret = i2c_smbus_read_byte_data(ts->client, CMD_GET_INTR_STATUS);
++    if (ret < 0) {
++        dev_err(&ts->client->dev, "COM%02X Error(%d)\n", CMD_GET_INTR_STATUS, ret);
++        return;
++    }
++
++    tp_process(ts);
++
++#if defined(USE_MOUSE)
++    if ((ret & STATUS_SW1) != (old_ret & STATUS_SW1)) {
++        input_report_key(ts->input, BTN_LEFT, ret & STATUS_SW1);
++    }
++    if ((ret & STATUS_SW2) != (old_ret & STATUS_SW2)) {
++        input_report_key(ts->input, BTN_MIDDLE, ret & STATUS_SW2);
++    }
++    if ((ret & STATUS_SW3) != (old_ret & STATUS_SW3)) {
++        input_report_key(ts->input, BTN_RIGHT, ret & STATUS_SW3);
++    }
++#else
++    if ((ret & STATUS_SW1) != (old_ret & STATUS_SW1)) {
++        input_report_key(ts->input, KEY_MENU, ret & STATUS_SW1);
++    }
++    if ((ret & STATUS_SW2) != (old_ret & STATUS_SW2)) {
++        input_report_key(ts->input, KEY_HOME, ret & STATUS_SW2);
++    }
++    if ((ret & STATUS_SW3) != (old_ret & STATUS_SW3)) {
++        input_report_key(ts->input, KEY_ESC, ret & STATUS_SW3);
++    }
++#endif  /* USE_MOUSE */
++    input_sync(ts->input);
++
++    old_ret = ret;
++
++    if (ret > 0) {
++        schedule_delayed_work(&ts->work, msecs_to_jiffies(READ_MSECS));
++    }
++}
++
++/*
++ * タッチパネル割り込み
++ */
++static irqreturn_t lcdkit_irq(int irq, void *handle)
++{
++    struct lcdkit *ts = handle;
++    int retval;
++
++    retval = schedule_delayed_work(&ts->work, 0);
++    if( retval == false ) {
++        dev_err(&ts->client->dev, "scleduling error(drv:%d)\n", __LINE__);
++    }
++
++    return IRQ_HANDLED;
++}
++
++static void lcdkit_poll_irq(unsigned long arg)
++{
++    struct lcdkit *ts = (struct lcdkit *)arg;
++
++    schedule_delayed_work(&ts->work, 0);
++
++    mod_timer(&ts->timer, jiffies + POLLING_PERIOD);
++}
++
++__attribute__((unused))
++static struct i2c_board_info tp_i2c_info = {
++    I2C_BOARD_INFO(DEVICE_NAME" TP", 0x42),
++};
++
++static void lcdkit_led_set(struct led_classdev *led_cdev,
++                           enum led_brightness value)
++{
++    struct lcdkit *ts;
++
++    ts = container_of(led_cdev, struct lcdkit, led);
++    value = (value * BACKLIGHT_LED_BRIGHTNESS_DEFAULT) / 100;
++    i2c_smbus_write_byte_data(ts->client, CMD_SET_BACKLIGHT_LED, value);
++
++    ts->led_value = value;
++}
++
++static struct led_classdev lcdkit_led = {
++    .name           = DEVICE_NAME_SMALL_SHORT"_backlight",
++    .brightness_set = lcdkit_led_set,
++};
++
++static ssize_t lcdkit_buzzer_read(struct file *filp, char __user *buf,
++                                  size_t count, loff_t *pos)
++{
++    return -EINVAL;
++}
++
++static ssize_t lcdkit_buzzer_write(struct file *filp,
++                                   const char __user *buf,
++                                   size_t count, loff_t *pos)
++{
++    struct lcdkit *ts = container_of(filp->private_data, struct lcdkit, buzzer);
++    u8 data;
++
++    get_user(data, buf);
++    i2c_smbus_write_byte_data(ts->client, CMD_SET_BUZZER, data);
++
++    return count;
++}
++
++static struct file_operations lcdkit_buzzer_fops = {
++    .owner  = THIS_MODULE,
++    .llseek = no_llseek,
++    .read   = lcdkit_buzzer_read,
++    .write  = lcdkit_buzzer_write,
++    .open   = nonseekable_open,
++};
++
++static struct miscdevice lcdkit_buzzer_device = {
++    MISC_DYNAMIC_MINOR,
++    DEVICE_NAME_SMALL_SHORT"_buzzer",
++    &lcdkit_buzzer_fops,
++};
++
++/*
++ * ドライバ初期化
++ *   device tree を使用する場合、 id が NULL となる
++ */
++static int lcdkit_probe(struct i2c_client *client,
++                        const struct i2c_device_id *id)
++{
++    struct lcdkit_platform_data *pdata = client->dev.platform_data;
++    struct lcdkit *ts;              /* タッチパネル情報 */
++    struct input_dev *input_dev;    /* インプットデバイス情報 */
++    u8 rcv[MAX_BLKSIZE];            /* 受信用バッファ */
++    int err = 0;                    /* 戻り値 */
++#ifdef  CONFIG_USE_OF
++    struct device_node *np;
++#endif
++
++    printk("%s installing...", DRIVER_NAME);
++
++    /* I2Cファンクションチェック */
++    if (!i2c_check_functionality(client->adapter,
++                                 I2C_FUNC_SMBUS_READ_WORD_DATA)){
++        printk("NG\n");
++        printk("\tI2C function error\n");
++        return -EIO;
++    }
++
++    /* デバイス用メモリ確保 */
++    ts = kzalloc(sizeof(struct lcdkit), GFP_KERNEL);
++    input_dev = input_allocate_device();
++    if (!ts || !input_dev) {
++        printk("NG\n");
++        printk("\tMemory allocation error\n");
++        err = -ENOMEM;
++        goto err_free_mem;
++    }
++
++    ts->client = client;
++
++#ifdef  CONFIG_USE_OF
++    np = of_find_node_by_path("/i2c@e6540000/lcdkitb02@0x42");
++    if( np ) {
++        ts->irq = irq_of_parse_and_map(np, 0);
++        if (ts->irq == 0) {
++            /* DTSに記載なしと判断する */
++            ts->irq = NO_IRQ;
++        }
++    } else {
++        ts->irq = 0;
++        dev_err(&client->dev, "irq_of_parse_and_map failed\n" ); 
++    }
++#else
++    ts->irq = client->irq;
++#endif
++    ts->pdata        = pdata;
++    ts->input        = input_dev;
++
++    spin_lock_init(&ts->lock);
++
++    INIT_DELAYED_WORK(&ts->work, lcdkit_read);
++
++    /* LCD-KIT-B02 ではTPと制御用CPUが統合された */
++    ts->tp_client = ts->client;
++
++    /* ファームウェアバージョンの取得・保存 */
++    err = lcdkit_i2c_multi_read(ts->tp_client, CMD_GET_FIRMWARE_VERSION, FIRM_VERSION_LEN, rcv);
++    if (err < 0) {
++        printk("NG\n");
++        printk("\tI2C function error(%d)\n", err);
++        err = -EIO;
++        goto err_free_mem;
++    }
++    memcpy(ts->ver, rcv, FIRM_VERSION_LEN);
++
++    /* パネル情報読み込み */
++    if (0 > lcdkit_i2c_multi_read(ts->tp_client, CMD_GET_PANEL_INFO, PANEL_INFO_LEN, rcv)){
++        pr_warning("%s fail get panel info\n", __func__);
++        err = -EIO;
++        goto err_free_mem;
++    }
++
++    /* パネル情報の保存 */
++    ts->p_info.xmax_low  = 0;
++    ts->p_info.ymax_low  = 0;
++    ts->p_info.xmax_high =  rcv[0] | rcv[1] << 8;
++    ts->p_info.ymax_high =  rcv[2] | rcv[3] << 8;
++    ts->p_info.x_cnum    =  rcv[4];
++    ts->p_info.y_cnum    =  rcv[5];
++
++    /* LCDKIT のステータス */
++    ts->status = 0;
++
++#if defined(UNIT_DEBUG)
++/* パネル情報表示 */
++    printk("%s panel info \n", __func__);
++    printk("furm ver 0x%02X:0x%02X:0x%02X\n", *(ts->ver+1), *(ts->ver+2), *(ts->ver+3));
++    printk("xmax low %d\n", ts->p_info.xmax_low);
++    printk("xmax high %d\n", ts->p_info.xmax_high);
++    printk("ymax low %d\n", ts->p_info.ymax_low);
++    printk("ymax high %d\n", ts->p_info.ymax_high);
++    printk("x channel num %d\n", ts->p_info.x_cnum);
++    printk("y channel num %d\n", ts->p_info.y_cnum);
++#endif
++
++    /* タッチパネルデバイス初期化 */
++    input_dev->name       = DEVICE_NAME;
++    input_dev->id.bustype = BUS_I2C;
++    input_dev->evbit[0]   = BIT_MASK(EV_KEY) | BIT_MASK(EV_ABS);
++
++    /* IRQ初期化 */
++    if (ts->irq != NO_IRQ) {
++        err = request_irq(ts->irq, lcdkit_irq,
++                          IRQF_TRIGGER_FALLING,
++                          input_dev->name, ts);
++        if (err) {
++            pr_warning("NG\n");
++            pr_warning("\tIlligal IRQ requested.\n");
++            err = -EIO;
++            goto err_free_gpio;
++        }
++    } else {
++        ts->irq_pin_state = -1;
++        init_timer(&ts->timer);
++        ts->timer.expires = jiffies + POLLING_PERIOD;
++        setup_timer(&ts->timer, lcdkit_poll_irq, ts);
++        add_timer(&ts->timer);
++    }
++
++    /* デバイス登録 */
++    input_set_abs_params(input_dev, ABS_X,
++                         ts->p_info.xmax_low, ts->p_info.xmax_high, 0, 0);
++    input_set_abs_params(input_dev, ABS_Y,
++                         ts->p_info.xmax_low, ts->p_info.ymax_high, 0, 0);
++
++#ifdef MULTI_TOUCH_ENABLE
++    input_mt_init_slots(input_dev, MULTI_TOUCH_CHANNEL, 0);
++    input_set_abs_params(input_dev,
++                         ABS_MT_TOUCH_MAJOR,
++                         0, ts->p_info.xmax_high, 0, 0);
++    input_set_abs_params(input_dev, ABS_MT_POSITION_X,
++                         ts->p_info.xmax_low, ts->p_info.xmax_high, 0, 0);
++    input_set_abs_params(input_dev, ABS_MT_POSITION_Y,
++                         ts->p_info.xmax_low, ts->p_info.ymax_high, 0, 0);
++#endif
++
++#if defined(USE_MOUSE)
++    input_set_capability(input_dev, EV_KEY, BTN_LEFT);
++    input_set_capability(input_dev, EV_KEY, BTN_MIDDLE);
++    input_set_capability(input_dev, EV_KEY, BTN_RIGHT);
++#else
++    input_set_capability(input_dev, EV_KEY, KEY_MENU);
++    input_set_capability(input_dev, EV_KEY, KEY_HOME);
++    input_set_capability(input_dev, EV_KEY, KEY_ESC);
++#endif  /* USE_MOUSE */
++    input_set_capability(input_dev, EV_KEY, BTN_TOUCH);
++
++    input_set_drvdata(input_dev, ts);
++    err = input_register_device(input_dev);
++    if (err) {
++        printk("NG\n");
++        printk("\tFailed to register input device(%d)\n", err);
++        goto err_free_irq;
++    }
++
++    /* Backlight Add */
++    ts->led = lcdkit_led;
++    ts->led_value = BACKLIGHT_LED_BRIGHTNESS_DEFAULT;
++    led_classdev_register(&client->dev, &ts->led);
++
++    /* Buzzer Add */
++    lcdkit_buzzer_device.parent = &input_dev->dev;
++    ts->buzzer = lcdkit_buzzer_device;
++    misc_register(&ts->buzzer);
++
++    /* Backlight ON */
++    lcdkit_led_set(&ts->led, ts->led_value);
++
++    /* インストール完了ログ */
++    printk("OK.\n");
++
++    ts->status |= LCDKIT_STATUS_INITIALIZED;
++
++    return err;
++
++/* 初期化失敗 */
++err_free_irq:
++    free_irq(ts->irq, ts);
++
++err_free_gpio:
++
++err_free_mem:
++    input_free_device(input_dev);
++    kfree(ts);
++
++    return err;
++}
++
++/*
++ * ドライバ破棄
++ */
++static int lcdkit_remove(struct i2c_client *client)
++{
++    struct lcdkit *ts = i2c_get_clientdata(client);
++
++    led_classdev_unregister(&ts->led);
++
++    if (ts->irq != NO_IRQ) {
++        free_irq(ts->irq, ts);
++    } else {
++        del_timer_sync(&ts->timer);
++    }
++
++    input_unregister_device(ts->input);
++    kfree(ts);
++
++    return 0;
++}
++
++/* I2Cデバイステーブル */
++static const struct i2c_device_id lcdkit_idtable[] = {
++    { DEVICE_NAME, 0x42 },
++    { }
++};
++
++static const struct of_device_id lcdkit_of_match[] = {
++    { .compatible = DTB_COMPATIBLE, },
++    { }
++};
++
++MODULE_DEVICE_TABLE(i2c, lcdkit_idtable);
++
++/* I2Cドライバ情報 */
++static struct i2c_driver lcdkit_driver = {
++    .driver = {
++        .owner          = THIS_MODULE,
++        .of_match_table = of_match_ptr(lcdkit_of_match),
++        .name           = DEVICE_NAME,
++    },
++    .id_table = lcdkit_idtable,
++    .probe    = lcdkit_probe,
++    .remove   = lcdkit_remove,
++/*
++#ifdef CONFIG_PM
++    .suspend = lcdkit_i2c_suspend,
++    .resume  = lcdkit_i2c_resume,
++#endif
++*/
++};
++
++static int __init lcdkit_init(void)
++{
++    /* ドライバ登録 */
++    return i2c_add_driver(&lcdkit_driver);
++}
++
++static void __exit lcdkit_exit(void)
++{
++    i2c_del_driver(&lcdkit_driver);
++}
++
++module_init(lcdkit_init);
++module_exit(lcdkit_exit);
++
++MODULE_AUTHOR("Alpha Project Co., LTD");
++MODULE_DESCRIPTION(DRIVER_NAME);
++MODULE_LICENSE("GPL");
