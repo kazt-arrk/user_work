@@ -1,0 +1,490 @@
+--- Starting bitbake server pid 5735 at 2021-09-24 12:25:03.307457 ---
+Started bitbake server pid 5735
+DEBUG: Found bblayers.conf (/home/kaz/user_work/build/conf/bblayers.conf)
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-poky
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-yocto-bsp
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-renesas/meta-rzg1
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-linaro-toolchain
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-optee
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-oe
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-multimedia
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-python
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-networking
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-qt5
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/common
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/qt-hmi-demo
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:740: including conf/abi_version.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:741: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:742: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:743: including conf/local.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:744: including conf/multiconfig/default.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:745: including conf/machine/aprzg0a.conf
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:5: including conf/machine/include/r8a7745.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/include/r8a7745.inc:2: including conf/machine/include/soc-family.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:9: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:746: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:747: including conf/distro/poky.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:748: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:749: including conf/documentation.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:750: including conf/licenses.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:751: including conf/sanity.conf
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/terminal.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/staging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/mirrors.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utils.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utility-tasks.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/metadata_scm.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/logging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass:1)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/packagedata.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/chrpath.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/insane.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/linuxloader.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'dump_signatures': [], 'extra_assume_provided': [], 'postfile': [], 'invalidate_stamp': None, 'prefile': [], 'debug': 0, 'server_timeout': None, 'verbose': False, 'abort': True, 'profile': False, 'force': False, 'debug_domains': [], 'dry_run': False}, {'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'QT_IM_MODULE': 'fcitx', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LIBGL_ALWAYS_SOFTWARE': '1', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1542', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'DESKTOP_SESSION': 'ubuntu', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'UPSTART_INSTANCE': '', 'OLDPWD': '/home/kaz', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'DISPLAY': ':0', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'XDG_VTNR': '7', 'XAUTHORITY': '/home/kaz/.Xauthority', 'LC_ALL': 'en_US.UTF-8', 'GNOME_KEYRING_CONTROL': '', 'VTE_VERSION': '4205', 'PWD': '/home/kaz/user_work', 'JOB': 'gnome-session', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'SESSIONTYPE': 'gnome-session', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'CLUTTER_IM_MODULE': 'xim', 'INSTANCE': 'Unity', 'HOME': '/home/kaz', 'XMODIFIERS': '@im=fcitx', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake', 'GDMSESSION': 'ubuntu', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-BvCffQI0aP', 'QT_ACCESSIBILITY': '1', 'XDG_SESSION_DESKTOP': 'ubuntu', 'QT4_IM_MODULE': 'fcitx', 'XDG_SESSION_TYPE': 'x11', 'SHELL': '/bin/bash', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANGUAGE': 'ja', 'XDG_SEAT': 'seat0', 'XDG_CURRENT_DESKTOP': 'Unity', 'LOGNAME': 'kaz', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'GDM_LANG': 'ja', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'TERM': 'xterm-256color', 'USER': 'kaz', 'LANG': 'ja_JP.UTF-8', 'UPSTART_EVENTS': 'started starting', 'UPSTART_JOB': 'unity-settings-daemon', 'XDG_SESSION_ID': 'c2', 'GTK2_MODULES': 'overlay-scrollbar', 'SHLVL': '1', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'GNOME_KEYRING_PID': '', 'GTK_IM_MODULE': 'fcitx', 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'IM_CONFIG_PHASE': '1', 'WINDOWID': '52486033', 'BBPATH': '/home/kaz/user_work/build', 'BUILDDIR': '/home/kaz/user_work/build'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake', 'core-image-weston']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-weston'], 'build']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 26833 at 2021-09-24 13:08:36.347573 ---
+Started bitbake server pid 26833
+DEBUG: Found bblayers.conf (/home/kaz/user_work/build/conf/bblayers.conf)
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-poky
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-yocto-bsp
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-renesas/meta-rzg1
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-linaro-toolchain
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-optee
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-oe
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-multimedia
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-python
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-networking
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-qt5
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/common
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/qt-hmi-demo
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:740: including conf/abi_version.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:741: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:742: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:743: including conf/local.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:744: including conf/multiconfig/default.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:745: including conf/machine/aprzg0a.conf
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:5: including conf/machine/include/r8a7745.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/include/r8a7745.inc:2: including conf/machine/include/soc-family.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:9: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:746: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:747: including conf/distro/poky.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:748: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:749: including conf/documentation.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:750: including conf/licenses.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:751: including conf/sanity.conf
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/terminal.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/staging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/mirrors.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utils.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utility-tasks.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/metadata_scm.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/logging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass:1)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/packagedata.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/chrpath.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/insane.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/linuxloader.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'server_timeout': None, 'debug': 0, 'prefile': [], 'postfile': [], 'debug_domains': [], 'dump_signatures': [], 'invalidate_stamp': None, 'verbose': False, 'force': False, 'extra_assume_provided': [], 'dry_run': False, 'abort': True, 'profile': False}, {'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1542', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GTK_IM_MODULE': 'fcitx', 'XDG_CURRENT_DESKTOP': 'Unity', 'XAUTHORITY': '/home/kaz/.Xauthority', 'IM_CONFIG_PHASE': '1', 'GDM_LANG': 'ja', 'XDG_SESSION_ID': 'c2', 'XDG_SEAT': 'seat0', 'GNOME_KEYRING_PID': '', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'UPSTART_EVENTS': 'started starting', 'GTK2_MODULES': 'overlay-scrollbar', 'XDG_SESSION_TYPE': 'x11', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'XDG_VTNR': '7', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-BvCffQI0aP', 'LC_ALL': 'en_US.UTF-8', 'CLUTTER_IM_MODULE': 'xim', 'UPSTART_JOB': 'unity-settings-daemon', 'WINDOWID': '52486033', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'SHELL': '/bin/bash', 'USER': 'kaz', 'TERM': 'xterm-256color', 'LIBGL_ALWAYS_SOFTWARE': '1', 'VTE_VERSION': '4205', 'LANG': 'ja_JP.UTF-8', 'QT_ACCESSIBILITY': '1', 'HOME': '/home/kaz', 'UPSTART_INSTANCE': '', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'DISPLAY': ':0', 'GDMSESSION': 'ubuntu', 'GNOME_KEYRING_CONTROL': '', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'SHLVL': '1', 'XMODIFIERS': '@im=fcitx', 'LOGNAME': 'kaz', 'PWD': '/home/kaz/user_work', 'JOB': 'gnome-session', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'BBPATH': '/home/kaz/user_work/build', 'INSTANCE': 'Unity', 'DESKTOP_SESSION': 'ubuntu', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'XDG_SESSION_DESKTOP': 'ubuntu', 'OUTPUT_DIR': '/home/kaz/user_work/build/tmp/deploy/images/aprzg0a', 'OLDPWD': '/home/kaz/aprzg0a_bin', 'QT4_IM_MODULE': 'fcitx', 'QT_IM_MODULE': 'fcitx', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'BUILDDIR': '/home/kaz/user_work/build', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'LANGUAGE': 'ja', 'SESSIONTYPE': 'gnome-session', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake', 'core-image-weston']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-weston'], 'build']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 26928 at 2021-09-24 13:18:41.774693 ---
+Started bitbake server pid 26928
+DEBUG: Found bblayers.conf (/home/kaz/user_work/build/conf/bblayers.conf)
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-poky
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-yocto-bsp
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-renesas/meta-rzg1
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-linaro-toolchain
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-optee
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-oe
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-multimedia
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-python
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-networking
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-qt5
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/common
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/qt-hmi-demo
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:740: including conf/abi_version.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:741: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:742: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:743: including conf/local.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:744: including conf/multiconfig/default.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:745: including conf/machine/aprzg0a.conf
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:5: including conf/machine/include/r8a7745.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/include/r8a7745.inc:2: including conf/machine/include/soc-family.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:9: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:746: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:747: including conf/distro/poky.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:748: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:749: including conf/documentation.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:750: including conf/licenses.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:751: including conf/sanity.conf
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/terminal.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/staging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/mirrors.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utils.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utility-tasks.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/metadata_scm.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/logging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass:1)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/packagedata.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/chrpath.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/insane.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/linuxloader.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'invalidate_stamp': None, 'debug': 0, 'abort': True, 'extra_assume_provided': [], 'server_timeout': None, 'dump_signatures': [], 'verbose': False, 'prefile': [], 'debug_domains': [], 'dry_run': False, 'profile': False, 'postfile': [], 'force': False}, {'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'LOGNAME': 'kaz', 'LIBGL_ALWAYS_SOFTWARE': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'XMODIFIERS': '@im=fcitx', 'BBPATH': '/home/kaz/user_work/build', 'SHELL': '/bin/bash', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'GTK2_MODULES': 'overlay-scrollbar', 'CLUTTER_IM_MODULE': 'xim', 'XDG_CURRENT_DESKTOP': 'Unity', 'PWD': '/home/kaz/user_work', 'GDM_LANG': 'ja', 'UPSTART_JOB': 'unity-settings-daemon', 'XDG_SESSION_TYPE': 'x11', 'JOB': 'gnome-session', 'HOME': '/home/kaz', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_ALL': 'en_US.UTF-8', 'OUTPUT_DIR': '/home/kaz/user_work/build/tmp/deploy/images/aprzg0a', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'GTK_IM_MODULE': 'fcitx', 'QT_IM_MODULE': 'fcitx', 'XDG_VTNR': '7', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'QT4_IM_MODULE': 'fcitx', 'BUILDDIR': '/home/kaz/user_work/build', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'DISPLAY': ':0', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'XDG_RUNTIME_DIR': '/run/user/1000', 'UPSTART_INSTANCE': '', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake', 'XAUTHORITY': '/home/kaz/.Xauthority', 'USER': 'kaz', 'XDG_SESSION_DESKTOP': 'ubuntu', 'UPSTART_EVENTS': 'started starting', 'GNOME_KEYRING_CONTROL': '', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'GNOME_KEYRING_PID': '', 'TERM': 'xterm-256color', 'XDG_SEAT': 'seat0', 'GDMSESSION': 'ubuntu', 'DESKTOP_SESSION': 'ubuntu', 'QT_ACCESSIBILITY': '1', 'SHLVL': '1', 'VTE_VERSION': '4205', 'LANGUAGE': 'ja', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1542', 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'OLDPWD': '/home/kaz/aprzg0a_bin', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'IM_CONFIG_PHASE': '1', 'XDG_SESSION_ID': 'c2', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-BvCffQI0aP', 'LANG': 'ja_JP.UTF-8', 'WINDOWID': '52486033', 'SESSIONTYPE': 'gnome-session', 'INSTANCE': 'Unity'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake', 'core-image-weston']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-weston'], 'build']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 13106 at 2021-09-24 14:49:54.089862 ---
+Started bitbake server pid 13106
+DEBUG: Found bblayers.conf (/home/kaz/user_work/build/conf/bblayers.conf)
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-poky
+DEBUG: Adding layer /home/kaz/user_work/build/../poky/meta-yocto-bsp
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-renesas/meta-rzg1
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-linaro-toolchain
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-linaro/meta-optee
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-oe
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-multimedia
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-python
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-openembedded/meta-networking
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-qt5
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/common
+DEBUG: Adding layer /home/kaz/user_work/build/../meta-rzg-demos/meta-rzg1/qt-hmi-demo
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:740: including conf/abi_version.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:741: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:742: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:743: including conf/local.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:744: including conf/multiconfig/default.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:745: including conf/machine/aprzg0a.conf
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:5: including conf/machine/include/r8a7745.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/include/r8a7745.inc:2: including conf/machine/include/soc-family.inc
+DEBUG: CONF /home/kaz/user_work/build/../meta-renesas/meta-rzg1/conf/machine/aprzg0a.conf:9: including conf/machine/include/tune-cortexa7.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/tune-cortexa7.inc:3: including conf/machine/include/arm/arch-armv7ve.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7ve.inc:8: including conf/machine/include/arm/arch-armv7a.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:8: including conf/machine/include/arm/arch-armv6.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv6.inc:8: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5-dsp.inc:4: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:8: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:15: including conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv4.inc:16: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv5.inc:9: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/machine/include/arm/arch-armv7a.inc:9: including conf/machine/include/arm/feature-arm-neon.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:746: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:747: including conf/distro/poky.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:748: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:749: including conf/documentation.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:750: including conf/licenses.conf
+DEBUG: CONF /home/kaz/user_work/build/../poky/meta/conf/bitbake.conf:751: including conf/sanity.conf
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/terminal.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/staging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/mirrors.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utils.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/utility-tasks.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/metadata_scm.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/logging.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/package.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package_ipk.bbclass:1)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/packagedata.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/chrpath.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/insane.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/linuxloader.bbclass (from /home/kaz/user_work/build/../poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/kaz/user_work/build/../poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/kaz/user_work/build/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'server_timeout': None, 'invalidate_stamp': None, 'debug_domains': [], 'dump_signatures': [], 'dry_run': False, 'force': False, 'profile': False, 'abort': True, 'debug': 0, 'extra_assume_provided': [], 'postfile': [], 'verbose': False, 'prefile': []}, {'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'OLDPWD': '/home/kaz/aprzg0a_bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDM_LANG': 'ja', 'SESSIONTYPE': 'gnome-session', 'BBPATH': '/home/kaz/user_work/build', 'USER': 'kaz', 'GTK2_MODULES': 'overlay-scrollbar', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-BvCffQI0aP', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'PWD': '/home/kaz/user_work', 'QT_ACCESSIBILITY': '1', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'QT_IM_MODULE': 'fcitx', 'SHLVL': '1', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LIBGL_ALWAYS_SOFTWARE': '1', 'DISPLAY': ':0', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'CLUTTER_IM_MODULE': 'xim', 'GTK_IM_MODULE': 'fcitx', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'XDG_SESSION_DESKTOP': 'ubuntu', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'IM_CONFIG_PHASE': '1', 'XDG_SESSION_ID': 'c2', 'OUTPUT_DIR': '/home/kaz/user_work/build/tmp/deploy/images/aprzg0a', 'XAUTHORITY': '/home/kaz/.Xauthority', 'GNOME_KEYRING_CONTROL': '', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'UPSTART_INSTANCE': '', 'SHELL': '/bin/bash', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'QT4_IM_MODULE': 'fcitx', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LANG': 'ja_JP.UTF-8', 'LANGUAGE': 'ja', 'UPSTART_JOB': 'unity-settings-daemon', 'TERM': 'xterm-256color', 'JOB': 'gnome-session', 'GNOME_KEYRING_PID': '', 'LOGNAME': 'kaz', 'UPSTART_EVENTS': 'started starting', 'XMODIFIERS': '@im=fcitx', 'LC_ALL': 'en_US.UTF-8', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'WINDOWID': '52486033', 'VTE_VERSION': '4205', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'HOME': '/home/kaz', 'DESKTOP_SESSION': 'ubuntu', 'GDMSESSION': 'ubuntu', 'XDG_VTNR': '7', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake', 'XDG_CURRENT_DESKTOP': 'Unity', 'BUILDDIR': '/home/kaz/user_work/build', 'XDG_SEAT': 'seat0', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'XDG_SESSION_TYPE': 'x11', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1542', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'INSTANCE': 'Unity'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake', '-s']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['getVariable', 'BBTARGETS']
+Running command ['showVersions']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 3733 at 2021-09-27 09:18:56.163689 ---
+Started bitbake server pid 3733
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2, 1]]
+Running command ['updateConfig', {'force': False, 'server_timeout': None, 'abort': True, 'prefile': [], 'verbose': False, 'dry_run': False, 'postfile': [], 'extra_assume_provided': [], 'debug': 0, 'debug_domains': [], 'profile': False, 'dump_signatures': [], 'invalidate_stamp': None}, {'SESSION': 'ubuntu', 'TERM': 'xterm-256color', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'UPSTART_EVENTS': 'xsession started', 'OLDPWD': '/home/kaz', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/home/kaz/.Xauthority', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1822', 'XDG_SESSION_TYPE': 'x11', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'SHLVL': '1', 'UNITY_DEFAULT_PROFILE': 'unity-lowgfx', 'BBPATH': '/home/kaz/user_work/build', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'GDM_LANG': 'ja', 'CLUTTER_IM_MODULE': 'xim', 'GNOME_KEYRING_CONTROL': '', 'UNITY_HAS_3D_SUPPORT': 'false', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'XDG_SEAT': 'seat0', 'XDG_SESSION_ID': 'c2', 'LIBGL_ALWAYS_SOFTWARE': '1', 'XDG_VTNR': '7', 'LANG': 'ja_JP.UTF-8', 'GDMSESSION': 'ubuntu', 'SESSIONTYPE': 'gnome-session', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-RUz1QXNR4E', 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'UPSTART_JOB': 'unity7', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'QT_ACCESSIBILITY': '1', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'GTK2_MODULES': 'overlay-scrollbar', 'UPSTART_INSTANCE': '', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'USER': 'kaz', 'GTK_IM_MODULE': 'fcitx', 'XDG_RUNTIME_DIR': '/run/user/1000', 'QT4_IM_MODULE': 'fcitx', 'DISPLAY': ':0', 'WINDOWID': '56623114', 'INSTANCE': '', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'XMODIFIERS': '@im=fcitx', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake-layers', 'IM_CONFIG_PHASE': '1', 'LC_ALL': 'en_US.UTF-8', 'LANGUAGE': 'ja', 'BUILDDIR': '/home/kaz/user_work/build', 'SHELL': '/bin/bash', 'PWD': '/home/kaz/user_work', 'GNOME_KEYRING_PID': '', 'LOGNAME': 'kaz', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'HOME': '/home/kaz', 'VTE_VERSION': '4205', 'JOB': 'unity-settings-daemon', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'DESKTOP_SESSION': 'ubuntu', 'COMPIZ_BIN_PATH': '/usr/bin/', 'XDG_CURRENT_DESKTOP': 'Unity', 'QT_IM_MODULE': 'fcitx', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake-layers', 'create-layer', 'meta-hello']]
+Running command ['parseConfiguration']
+Running command ['dataStoreConnectorFindVar', None, 'BBPATH']
+Running command ['dataStoreConnectorFindVar', None, 'TOPDIR']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['clientComplete']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 3744 at 2021-09-27 09:19:03.424394 ---
+Started bitbake server pid 3744
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2, 1]]
+Running command ['updateConfig', {'extra_assume_provided': [], 'prefile': [], 'server_timeout': None, 'invalidate_stamp': None, 'debug': 0, 'postfile': [], 'force': False, 'profile': False, 'abort': True, 'debug_domains': [], 'dump_signatures': [], 'verbose': False, 'dry_run': False}, {'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'XDG_SEAT': 'seat0', 'XDG_VTNR': '7', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'XDG_CURRENT_DESKTOP': 'Unity', 'TERM': 'xterm-256color', 'CLUTTER_IM_MODULE': 'xim', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LANGUAGE': 'ja', 'WINDOWID': '56623114', 'UPSTART_EVENTS': 'xsession started', 'OLDPWD': '/home/kaz', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'XDG_SESSION_DESKTOP': 'ubuntu', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake-layers', 'LOGNAME': 'kaz', 'LIBGL_ALWAYS_SOFTWARE': '1', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'UNITY_HAS_3D_SUPPORT': 'false', 'GNOME_KEYRING_CONTROL': '', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'COMPIZ_BIN_PATH': '/usr/bin/', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'JOB': 'unity-settings-daemon', 'LANG': 'ja_JP.UTF-8', 'XAUTHORITY': '/home/kaz/.Xauthority', 'QT4_IM_MODULE': 'fcitx', 'GDMSESSION': 'ubuntu', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'VTE_VERSION': '4205', 'BUILDDIR': '/home/kaz/user_work/build', 'XDG_RUNTIME_DIR': '/run/user/1000', 'HOME': '/home/kaz', 'GNOME_KEYRING_PID': '', 'UNITY_DEFAULT_PROFILE': 'unity-lowgfx', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-RUz1QXNR4E', 'SHELL': '/bin/bash', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PWD': '/home/kaz/user_work', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'DESKTOP_SESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'DISPLAY': ':0', 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'UPSTART_INSTANCE': '', 'GDM_LANG': 'ja', 'USER': 'kaz', 'GTK2_MODULES': 'overlay-scrollbar', 'INSTANCE': '', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'QT_ACCESSIBILITY': '1', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'SESSION': 'ubuntu', 'SHLVL': '1', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'BBPATH': '/home/kaz/user_work/build', 'SESSIONTYPE': 'gnome-session', 'IM_CONFIG_PHASE': '1', 'XDG_SESSION_TYPE': 'x11', 'UPSTART_JOB': 'unity7', 'LC_ALL': 'en_US.UTF-8', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1822', 'QT_IM_MODULE': 'fcitx', 'GTK_IM_MODULE': 'fcitx', 'XDG_SESSION_ID': 'c2', 'XMODIFIERS': '@im=fcitx'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake-layers', 'add-layer', '../meta-hello']]
+Running command ['parseConfiguration']
+Running command ['dataStoreConnectorFindVar', None, 'BBPATH']
+Running command ['dataStoreConnectorFindVar', None, 'TOPDIR']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['clientComplete']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 3764 at 2021-09-27 09:20:29.657243 ---
+Started bitbake server pid 3764
+Entering server connection loop
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2, 1]]
+Running command ['updateConfig', {'server_timeout': None, 'debug': 0, 'verbose': False, 'dry_run': False, 'profile': False, 'extra_assume_provided': [], 'debug_domains': [], 'dump_signatures': [], 'prefile': [], 'force': False, 'abort': True, 'invalidate_stamp': None, 'postfile': []}, {'COMPIZ_BIN_PATH': '/usr/bin/', 'GDMSESSION': 'ubuntu', 'BBPATH': '/home/kaz/user_work/build', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'UPSTART_JOB': 'unity7', 'GTK2_MODULES': 'overlay-scrollbar', 'XDG_SESSION_DESKTOP': 'ubuntu', 'WINDOWID': '56623114', 'IM_CONFIG_PHASE': '1', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'GTK_MODULES': 'gail:atk-bridge:unity-gtk-module', 'BUILDDIR': '/home/kaz/user_work/build', 'HOME': '/home/kaz', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'SESSIONTYPE': 'gnome-session', 'TERM': 'xterm-256color', 'SHELL': '/bin/bash', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1822', 'XDG_SESSION_ID': 'c2', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANGUAGE': 'ja', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'XDG_VTNR': '7', 'SHLVL': '1', 'INSTANCE': '', 'CLUTTER_IM_MODULE': 'xim', 'PWD': '/home/kaz/user_work', 'JOB': 'unity-settings-daemon', 'XDG_SEAT': 'seat0', 'XMODIFIERS': '@im=fcitx', 'LANG': 'ja_JP.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'VTE_VERSION': '4205', 'UNITY_HAS_3D_SUPPORT': 'false', 'XAUTHORITY': '/home/kaz/.Xauthority', 'UPSTART_INSTANCE': '', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GNOME_KEYRING_CONTROL': '', 'QT4_IM_MODULE': 'fcitx', 'XDG_SESSION_TYPE': 'x11', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-RUz1QXNR4E', 'LOGNAME': 'kaz', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'USER': 'kaz', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'COMPIZ_CONFIG_PROFILE': 'ubuntu', 'GTK_IM_MODULE': 'fcitx', 'QT_ACCESSIBILITY': '1', 'SESSION': 'ubuntu', 'DISPLAY': ':0', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'XDG_GREETER_DATA_DIR': '/var/lib/lightdm-data/kaz', 'UNITY_DEFAULT_PROFILE': 'unity-lowgfx', 'LIBGL_ALWAYS_SOFTWARE': '1', '_': '/home/kaz/user_work/poky/bitbake/bin/bitbake-layers', 'QT_IM_MODULE': 'fcitx', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'GDM_LANG': 'ja', 'OLDPWD': '/home/kaz', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GNOME_KEYRING_PID': '', 'PATH': '/home/kaz/user_work/poky/scripts:/home/kaz/user_work/poky/bitbake/bin:/home/kaz/bin:/home/kaz/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GPG_AGENT_INFO': '/home/kaz/.gnupg/S.gpg-agent:0:1', 'DESKTOP_SESSION': 'ubuntu', 'UPSTART_EVENTS': 'xsession started', 'XDG_CURRENT_DESKTOP': 'Unity'}, ['/home/kaz/user_work/poky/bitbake/bin/bitbake-layers', 'create-layer', 'meta-hello']]
+Running command ['parseConfiguration']
+Running command ['dataStoreConnectorFindVar', None, 'BBPATH']
+Running command ['dataStoreConnectorFindVar', None, 'TOPDIR']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBLAYERS']
+Running command ['dataStoreConnectorGetVarHistory', None, 'BBFILE_COLLECTIONS']
+Running command ['dataStoreConnectorFindVar', None, 'BBFILE_COLLECTIONS']
+Running command ['clientComplete']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
